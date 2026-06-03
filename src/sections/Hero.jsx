@@ -59,23 +59,13 @@ export default function Hero() {
             {HERO.sub}
           </p>
 
-          {/* PRICE — open slashed + offer price */}
-          <div className="mt-9 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-            <span className="eyebrow text-ink-500">Webinar price</span>
-            <span className="strike-old display text-2xl sm:text-3xl">
-              {WORKSHOP.currency}{WORKSHOP.priceAnchor}
-            </span>
-            <span className="display text-4xl sm:text-5xl text-teal-deep tabular-nums">
-              {WORKSHOP.currency}{WORKSHOP.priceFinal}
-            </span>
-            <span className="text-sm text-rose-saree font-medium">
-              offer ends soon
-            </span>
-          </div>
-
-          <div className="mt-5 flex flex-col sm:flex-row sm:items-center gap-5">
+          <div className="mt-9 flex flex-col sm:flex-row sm:items-center gap-5">
             <BookButton className="btn-primary text-base sm:text-lg w-full sm:w-auto">
-              Reserve your seat — {WORKSHOP.currency}{WORKSHOP.priceFinal}
+              Reserve your seat —{' '}
+              <span className="line-through opacity-60 mr-1.5 font-normal">
+                {WORKSHOP.currency}{WORKSHOP.priceAnchor}
+              </span>
+              <span>{WORKSHOP.currency}{WORKSHOP.priceFinal}</span>
               <span className="arr" aria-hidden>→</span>
             </BookButton>
 
