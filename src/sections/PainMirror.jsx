@@ -42,7 +42,8 @@ export default function PainMirror() {
             ))}
           </p>
           <BookButton className="btn-primary shrink-0">
-            🔓 {HERO.unlockCta} <span className="arr" aria-hidden>→</span>
+            Reserve your seat — <span className="line-through opacity-60 mr-1 font-normal">₹999</span> ₹99
+            <span className="arr" aria-hidden>→</span>
           </BookButton>
         </div>
       </Reveal>

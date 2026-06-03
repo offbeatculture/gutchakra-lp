@@ -41,11 +41,11 @@ export default function StickyBar() {
                     {pad(mm)}:{pad(ss)}
                   </span>
                   <span className="hidden sm:inline text-xs text-cream-200/70 font-sans">
-                    {expired ? 'final seats only' : 'before today\u2019s price returns'}
+                    {expired ? 'final seats only' : 'before price increases'}
                   </span>
                 </div>
                 <div className="sm:hidden text-[11px] text-cream-200/70 mt-0.5">
-                  {expired ? 'final seats only' : 'before price returns'}
+                  {expired ? 'final seats only' : 'before price increases'}
                 </div>
               </div>
 
