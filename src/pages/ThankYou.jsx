@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-const WHATSAPP_URL = 'http://join.valarmathisrinivasan.in/gcr-fb-wap';
+const WHATSAPP_URL = 'https://join.askvalarrmathi.com/gcr-fb-wap';
 
 export default function ThankYou() {
   useEffect(() => {
