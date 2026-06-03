@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body { overflow-x: clip; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: theme('fontFamily.sans');
+    background: theme('colors.cream.50');
+    color: theme('colors.ink.900');
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: 17px;
+    line-height: 1.55;
+    /* Reserve room for sticky bar so the page bottom isn't covered */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  @media (min-width: 768px) { body { font-size: 18px; } }
+  ::selection { background: theme('colors.gold.DEFAULT'); color: theme('colors.ink.900'); }
+  *:focus-visible { outline: 2px solid theme('colors.teal.deep'); outline-offset: 3px; border-radius: 4px; }
+}
+
+@layer components {
+  .container-px { @apply px-5 sm:px-8; }
+  .max-shell    { @apply max-w-6xl mx-auto; }
+  .section-y    { @apply py-20 sm:py-28; }
+
+  .eyebrow {
+    font-family: theme('fontFamily.mono');
+    @apply text-[11px] sm:text-xs tracking-[0.22em] uppercase text-ink-700;
+  }
+  .display {
+    font-family: theme('fontFamily.display');
+    font-variation-settings: "opsz" 96, "SOFT" 50;
+    font-weight: 500;
+    @apply leading-[1.04] tracking-[-0.02em];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-3 rounded-full bg-teal-deep text-cream-50
+           px-7 py-4 font-semibold shadow-cta transition-all duration-300
+           hover:bg-teal-forest hover:-translate-y-0.5 active:translate-y-0
+           focus-visible:ring-2 focus-visible:ring-gold;
+  }
+  .btn-primary .arr { @apply transition-transform duration-300; }
+  .btn-primary:hover .arr { @apply translate-x-1; }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink-700/15 bg-cream-100 px-5 py-2.5 text-sm font-medium text-ink-800 hover:bg-cream-200 transition;
+  }
+
+  .card-cream { @apply bg-cream-100/80 backdrop-blur-[2px] border border-ink-700/10 rounded-2xl shadow-soft; }
+  .pad        { @apply p-7 sm:p-8; }
+  .pill       { @apply inline-flex items-center gap-2 rounded-full border border-ink-700/15 bg-cream-100 px-3.5 py-1.5 text-xs sm:text-[13px] font-medium text-ink-800; }
+
+  .pain    { color: theme('colors.rose.saree'); font-style: italic; }
+  .promise { color: theme('colors.teal.deep'); }
+
+  /* Stronger, more readable variants used in big headlines.
+     rose-deep (#A8385A) is AA against cream; teal-deep is the promise. */
+  .pain-strong {
+    color: theme('colors.rose.deep');
+    font-weight: 700;
+  }
+  .promise-strong {
+    color: theme('colors.teal.deep');
+    font-weight: 700;
+  }
+
+  /* Hero headline: highly-readable Manrope (sans), strong weight, tight leading. */
+  .hero-display {
+    font-family: theme('fontFamily.sans');
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-size: clamp(32px, 5vw, 56px);
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-ink-700/15 bg-cream-50 px-4 py-3.5 text-ink-900
+           placeholder:text-ink-500/60 focus:border-teal-deep focus:bg-white outline-none transition;
+  }
+  .strike-old { @apply line-through text-ink-500/60; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
