@@ -5,7 +5,7 @@ const WHATSAPP_URL = 'https://join.askvalarrmathi.com/gcr-fb-wap';
 
 export default function ThankYou() {
   useEffect(() => {
-    document.title = 'Thank You · Gut Chakra Reset';
+    document.title = 'You\u2019re In · Gut Chakra Reset';
     try {
       if (typeof window !== 'undefined' && window.fbq) {
         window.fbq('trackCustom', 'Purchase-99Gut', { value: 99, currency: 'INR' });
@@ -48,7 +48,7 @@ export default function ThankYou() {
         transition={{ delay: 0.2 }}
         className="display text-4xl sm:text-6xl mt-4 text-center text-balance"
       >
-        Thank You for <span className="italic text-teal-deep">Joining!</span>
+        Congrats on <span className="italic text-teal-deep">Joining!</span>
       </motion.h1>
 
       <motion.p
