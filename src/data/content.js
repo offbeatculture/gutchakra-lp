@@ -233,8 +233,8 @@ export const FINAL_CTA = {
 // CHECKOUT / FORM / RAZORPAY
 // ---------------------------------------------------------------
 export const PROFESSIONS = [
-  'Working professional', 'Founder / business owner', 'Healthcare professional',
-  'Homemaker', 'Teacher / educator', 'Student', 'Retired', 'Other',
+  'Working professional', 'Business owner', 'Student',
+  'Homemaker', 'Retired', 'Other',
 ];
 
 export const ORDER_BUMP = {

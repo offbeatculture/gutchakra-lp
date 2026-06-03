@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 
 // Live-fetches workshop date/time from the published Google Sheet.
-// Sheet: https://docs.google.com/spreadsheets/d/12vTNZhtzhuSOscgPa7EZyN6FK1-X_pNBaCnqvVReApw
-// Returns the hardcoded fallback immediately, then upgrades to the live value
-// once the network request resolves.
+// Sheet: https://docs.google.com/spreadsheets/d/1AchXrIbHu3b_lBFe2cAn6pcTvCFMtF8GR0g-EnQlPL4
+// Tab: "Date Change Sheet" (A=Date, B=Time)
 const SHEET_CSV =
-  'https://docs.google.com/spreadsheets/d/12vTNZhtzhuSOscgPa7EZyN6FK1-X_pNBaCnqvVReApw/gviz/tq?tqx=out:csv&sheet=Sheet1';
+  'https://docs.google.com/spreadsheets/d/1AchXrIbHu3b_lBFe2cAn6pcTvCFMtF8GR0g-EnQlPL4/gviz/tq?tqx=out:csv&sheet=Date%20Change%20Sheet';
 
 // Naive but safe CSV parser for our 2-column sheet.
 function parseRow2(csv) {
