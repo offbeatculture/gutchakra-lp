@@ -3,7 +3,7 @@ import { WORKSHOP, PROFESSIONS, RAZORPAY } from '../data/content.js';
 import { track } from '../lib/analytics.js';
 import { useSchedule } from '../lib/useSchedule.js';
 
-const WEBHOOK_URL = '';        // paste n8n webhook here when ready
+const WEBHOOK_URL = 'https://offbeatn8n.coachswastik.com/webhook/gcr-fb11-leads';        // paste n8n webhook here when ready
 const FALLBACK_SHEET_URL = ''; // paste Apps Script /exec URL here
 
 function buildRazorpayUrl({ name, email, whatsapp, profession }) {
@@ -21,6 +21,17 @@ function buildRazorpayUrl({ name, email, whatsapp, profession }) {
     url.searchParams.set('prefill[contact]', whatsapp);
   }
   return url.toString();
+}
+
+function getUtmParams() {
+  const params = new URLSearchParams(window.location.search);
+
+  return {
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    utm_content: params.get('utm_content') || '',
+  };
 }
 
 function Field({ id, label, hint, error, children }) {
@@ -63,40 +74,59 @@ export default function RegisterForm() {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-    if (submitting) return;
-    if (!validate()) return;
-    setSubmitting(true); setSubmitError('');
+  e.preventDefault();
+  if (submitting) return;
+  if (!validate()) return;
+  setSubmitting(true); 
+  setSubmitError('');
 
-    const payload = {
-      ...form,
-      whatsapp: form.whatsapp.replace(/\s+/g, ''),
-      total: WORKSHOP.priceFinal,
-      currency: WORKSHOP.currency,
-      source: RAZORPAY.sourceValue,
-      ts: new Date().toISOString(),
-    };
-    track('form_submit', { total: WORKSHOP.priceFinal });
+  const utm = getUtmParams();
 
-    const send = (url) => fetch(url, {
-      method: 'POST', keepalive: true,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }).catch(() => null);
+  const payload = {
+    ...form,
+    whatsapp: form.whatsapp.replace(/\s+/g, ''),
+    total: WORKSHOP.priceFinal,
+    currency: WORKSHOP.currency,
+    source: RAZORPAY.sourceValue,
 
-    try {
-      if (WEBHOOK_URL)        send(WEBHOOK_URL);
-      if (FALLBACK_SHEET_URL) send(FALLBACK_SHEET_URL);
-      track('lead', { value: WORKSHOP.priceFinal });
+    // UTM tracking
+    utm_source: utm.utm_source,
+    utm_medium: utm.utm_medium,
+    utm_campaign: utm.utm_campaign,
+    utm_content: utm.utm_content,
 
-      const url = buildRazorpayUrl(payload);
-      setTimeout(() => window.location.assign(url), 80);
-    } catch {
-      setSubmitError('Something went wrong. Try once more — your payment is safe.');
-      setSubmitting(false);
-    }
+    page_url: window.location.href,
+    ts: new Date().toISOString(),
   };
 
+  track('form_submit', { 
+    total: WORKSHOP.priceFinal,
+    ...utm,
+  });
+
+  const send = (url) => fetch(url, {
+    method: 'POST',
+    keepalive: true,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  }).catch(() => null);
+
+  try {
+    if (WEBHOOK_URL) send(WEBHOOK_URL);
+    if (FALLBACK_SHEET_URL) send(FALLBACK_SHEET_URL);
+
+    track('lead', { 
+      value: WORKSHOP.priceFinal,
+      ...utm,
+    });
+
+    const url = buildRazorpayUrl(payload);
+    setTimeout(() => window.location.assign(url), 80);
+  } catch {
+    setSubmitError('Something went wrong. Try once more — your payment is safe.');
+    setSubmitting(false);
+  }
+};
   return (
     <section id="register" className="relative section-y scroll-mt-24">
       <div aria-hidden className="absolute inset-0 -z-10">
