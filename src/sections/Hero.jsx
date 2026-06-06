@@ -37,7 +37,7 @@ export default function Hero() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-rose-saree" />
             </span>
             <span className="font-mono text-[11px] sm:text-xs tracking-[0.2em] uppercase text-ink-800">
-              {HERO.eyebrow}
+              {sched.date} · {sched.time}
             </span>
           </div>
 

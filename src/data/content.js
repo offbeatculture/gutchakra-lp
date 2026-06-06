@@ -11,7 +11,7 @@ export const WORKSHOP = {
   // Hardcoded fallback — live values fetched from the Master sheet via useSchedule().
   date: '7 Jun 2026',
   day:  'Sunday',
-  time: '6:30 PM to 9:30 PM IST',
+  time: 'Sunday 10:30 AM - 1PM',
   duration: '3-hour masterclass · on Zoom',
 
   // Pricing displayed on the LP itself never shows a number anymore
