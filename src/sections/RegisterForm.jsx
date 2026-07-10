@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { WORKSHOP, PROFESSIONS, RAZORPAY } from '../data/content.js';
 import { track } from '../lib/analytics.js';
 import { useSchedule } from '../lib/useSchedule.js';
+import { leadflow } from "../lib/leadflow-client";
 
 const WEBHOOK_URL = 'https://offbeatn8n.coachswastik.com/webhook/gcr-fb11-leads';        // paste n8n webhook here when ready
 const FALLBACK_SHEET_URL = ''; // paste Apps Script /exec URL here
@@ -114,7 +115,11 @@ export default function RegisterForm() {
   try {
     if (WEBHOOK_URL) send(WEBHOOK_URL);
     if (FALLBACK_SHEET_URL) send(FALLBACK_SHEET_URL);
-
+     await leadflow.trackSignup({
+        name:  payload.name,
+        email: payload.email,
+        phone: payload.whatsapp,   // your phone field is "whatsapp"
+      });
     track('lead', { 
       value: WORKSHOP.priceFinal,
       ...utm,
