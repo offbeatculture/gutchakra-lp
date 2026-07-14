@@ -115,11 +115,13 @@ export default function RegisterForm() {
   try {
     if (WEBHOOK_URL) send(WEBHOOK_URL);
     if (FALLBACK_SHEET_URL) send(FALLBACK_SHEET_URL);
-     await leadflow.trackSignup({
-        name:  payload.name,
-        email: payload.email,
-        phone: payload.whatsapp,   // your phone field is "whatsapp"
-      });
+leadflow.trackSignup({
+  name: payload.name,
+  email: payload.email,
+  phone: payload.whatsapp,
+}).catch((error) => {
+  console.error('Leadflow tracking failed:', error);
+});
     track('lead', { 
       value: WORKSHOP.priceFinal,
       ...utm,
