@@ -4,7 +4,8 @@ import { track } from '../lib/analytics.js';
 import { useSchedule } from '../lib/useSchedule.js';
 import { leadflow } from "../lib/leadflow-client";
 
-const WEBHOOK_URL = 'https://offbeatn8n.coachswastik.com/webhook/gcr-fb11-leads';        // paste n8n webhook here when ready
+// const WEBHOOK_URL = 'https://offbeatn8n.coachswastik.com/webhook/gcr-fb11-leads';  
+const WEBHOOK_URL = 'https://n8n.swastiknandakumar.com/webhook/gcr-fb11-leads';         // paste n8n webhook here when ready
 const FALLBACK_SHEET_URL = ''; // paste Apps Script /exec URL here
 
 function buildRazorpayUrl({ name, email, whatsapp, profession }) {
