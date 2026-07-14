@@ -263,3 +263,16 @@ export const RAZORPAY = {
   },
   appendCheckoutPrefill: true,
 };
+export const RAZORPAY_ORG = {
+  pageUrl: 'https://pages.razorpay.com/gcr-org',   // ← your new Razorpay payment page URL for org
+  sourceValue: 'org',                               // ← must match the "Source" dropdown value on that Razorpay page
+  paramMap: {
+    name:       'name',
+    email:      'email',
+    whatsapp:   'whatsapp_number',
+    profession: 'profession',
+    amount:     'amount',
+    source:     'source',
+  },
+  appendCheckoutPrefill: true,
+};
