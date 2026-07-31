@@ -246,6 +246,16 @@ export const ORDER_BUMP = {
   priceNow: WORKSHOP.recordingPrice,
 };
 
+// Truelens Gut-Chakra (GCR) amount markers. The decimal encodes product+funnel
+// in the Truelens amount-decode: .05 → ₹99 Gut front-end, .08 → ₹298 Gut bump,
+// .01 on ₹7,999 → GCR mid-tier upsell. Captured amount carries the marker so
+// every Razorpay sale resolves to GCR (mirrors BCR's decimal scheme).
+export const GCR_AMOUNTS = {
+  frontend:    99.05,    // ₹99 front-end (Gut)
+  frontendBump: 298.08,  // ₹99 + ₹199 recording bump (Gut)
+  upsell:      7999.01,  // ₹7,999 masterclass upsell (GCR) — set on the Razorpay upsell page
+};
+
 export const RAZORPAY = {
   pageUrl: 'https://pages.razorpay.com/gcr-fb11',
   // Value sent for the "Source" dropdown on the Razorpay page.

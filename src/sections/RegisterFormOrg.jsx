@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { WORKSHOP, PROFESSIONS, RAZORPAY_ORG as RAZORPAY } from '../data/content.js';
+import { WORKSHOP, PROFESSIONS, RAZORPAY_ORG as RAZORPAY, GCR_AMOUNTS } from '../data/content.js';
 import { track } from '../lib/analytics.js';
 import { useSchedule } from '../lib/useSchedule.js';
 import { leadflow } from "../lib/leadflow-client";
@@ -14,7 +14,7 @@ function buildRazorpayUrl({ name, email, whatsapp, profession }) {
   url.searchParams.set(m.email,      email);
   url.searchParams.set(m.whatsapp,   whatsapp);
   url.searchParams.set(m.profession, profession);
-  url.searchParams.set(m.amount,     String(WORKSHOP.priceFinal));
+  url.searchParams.set(m.amount,     String(GCR_AMOUNTS.frontend));
   url.searchParams.set(m.source,     RAZORPAY.sourceValue);
   if (RAZORPAY.appendCheckoutPrefill) {
     url.searchParams.set('prefill[name]',    name);
