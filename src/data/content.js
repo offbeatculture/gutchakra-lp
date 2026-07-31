@@ -252,7 +252,7 @@ export const ORDER_BUMP = {
 // every Razorpay sale resolves to GCR (mirrors BCR's decimal scheme).
 export const GCR_AMOUNTS = {
   frontend:    99.05,    // ₹99 front-end (Gut)
-  frontendBump: 298.08,  // ₹99 + ₹199 recording bump (Gut)
+  frontendBump: 298.05,  // ₹99 + ₹199 recording bump (Gut)
   upsell:      7999.01,  // ₹7,999 masterclass upsell (GCR) — set on the Razorpay upsell page
 };
 
